@@ -1,0 +1,281 @@
+
+- Table:
+    - departement(id,lebelle,)
+    - postes(id,libelle)
+    - postes_depart(id,id_departement,id_poste)
+    - contrat(id,libelle,minMois,maxMois)
+    - employe(id,id_departement,id_poste,date,id_contrat)
+    - departement_manager(id,id_departement,id_employe)
+    - promotion (id,id_employe,id_poste,date,salaire,status)
+    - genre(id,libelle)
+    - talent(id,libelle)
+    - priorite(id,libelle)
+    - besoin_poste(id,id_poste,id_genre,id_contrat,ageMin,finValidite,priorite,info_sup,personnelTrouver)
+    - talent_poste_besoin(id,id_talent,id_besoin_poste,expMin,expMax,etude)
+    - dossiers(id,candidat,email,id_besoin_poste,date_reception,statut,cv,lettre_motivation)
+    - cv(id,id_dossier,status,notes,test,entretien,comparaisonValider,etude)
+    - communication_cv(id,id_cv,id_model_communication)
+    - classification_cv(id,id_cv,experience,id_talent)
+    - model_communication(id,type,status,model)
+    - communication(id,id_cv,id_model_communication,create_at)
+    - typeTest(id,libelle)
+    - test(id,id_cv,id_typeTest,date,point,observation)
+    - model_exo(id,contenu)
+    - test_note(id,id_test,id_model_exo,note)
+    - entretien(id,id_cv,date_entretien,commentaire,status)
+    - contrat_cv(id,id_cv,id_contrat,date_debut,periode,salaire_propose,notes_sup)
+
+-carte 1:
+    -Besoin en talent:
+        Model:
+            +postes:
+                + all() -> array<Poste>
+            +genre:
+                + all() -> array<Genre>
+            +contrat:
+                + all() -> array<Contrat>
+            +priorite:
+                + all() -> array<Priorite>
+            +promotion:
+                + create() -> any
+                + delete() -> any
+            +employe:
+                +update() -> any
+            +besoin:
+                + all() -> array<Besoin>
+                + find($id) -> Besoin
+                + create() -> any
+                + update() -> any
+                + delete() -> any
+                + filter(departement) -> array<Besoin>
+
+        -View:
+            +besoin-form:
+                +poste: select(Poste)
+                +genre: select(Genre)
+                +contrat: select(Contrat)
+                +agemin: number
+                +finValidite: date
+                +priorite: select(Priorite)
+                +info_sup: text
+
+            -list-personnel:
+                +table:
+                    +employe
+                    +id
+                    +departement
+                    +poste
+                    +date d entree
+                    +contrat
+                    +manager
+                    +boutton-promotion
+
+            +list-promotion:
+                +table:
+                    +employe
+                    +poste
+                    +departement
+                    +salaire
+                    +boutton-valider
+                    +boutton-refuser
+
+            +besoin-list:
+                +table:
+                    +poste
+                    +departement
+                    +urgence
+                    +date
+                    +statut
+                    +boutton-verification
+                    +boutton-supprimer
+
+        -Controller:
+            -BesoinController:
+                - index(): Model\Besoin::all(),Model\Besoin::filter(filters[departement]) -> View\besoin-list
+
+                + create(): View\besoin-list.button-add -> (Model\Post::all(),Model\Genre::all(),Model\Contrat::all(),Model\Priorite::all()) -> View\besoin-form
+                + store($request): View\besoin-form.button -> Model\Besoin::create()
+
+                + delete($id): View\besoin-list.button-delete -> Model\Besoin::delete($id)
+
+                + promotion(): View\list-personnel.boutton-promotion -> View\list-promotion
+
+                + validerPromotion(): View\list-personnel.boutton-valider -> Model\Employe::update() ,Model\Besoin::update() -> View\list-promotion
+
+                + refuserPromotion(): View\list-personnel.boutton-refuser -> Model\Promotion::remove() -> View\list-promotion
+
+- carte 2:
+    - Dossier:
+        - Model:
+            -postes:
+                - all() -> array<Poste>
+
+            -dossiers:
+                + all() -> array<Dossier>
+                + find($id) -> Dossier
+                + create() -> any
+                - filtre(candiat,poste,status) -> array<Dossier>
+                + export_pdf_image (pdf-name[root/to/candidat-create_at.pdf])
+        + View:
+            + dossier-form:
+                + candidat: text
+                + email: email
+                + poste: select(poste)
+                + cv: fichier
+                + lettre_motivation: fichier
+                + button: submit
+
+            + dossier-list:
+                + table:
+                    + candidat
+                    + poste
+                    + date_reception
+                    + statut
+                    + boutton-cv
+                    + boutton-lettre_motivation
+                    + button-analyser
+                    + after process pdf show popup image
+
+        + Controller:
+            + DossierController:
+                + index(): Model\Dossier::all(),Model\Dossier::filtre(filters[candiat,poste,status]) -> View\dossier-list
+
+                + create(): View\dossier-list.button-add -> (Model\Post::all()) -> View\dossier-form
+                + store($request): View\dossier-form.button -> Model\Dossier::create()
+
+                + process_cv($candidat,$tempstamp): export_pdf_image ($candidat.$tempstamp-cv.".pdf") -> View\dossier-list
+
+                + process_lm($candidat,$tempstamp): export_pdf_image ($candidat.$tempstamp-lm.".pdf") -> View\dossier-list
+
+                + process_analyse($image-cv,$image-lm) -> View\cv_form
+
+                + refuser($id): View\dossier-list.button-refuser -> Model\Dossier::update($id)
+
+    - comparaison de cv avec profil:
+        - Model:
+            - Cv:
+                - all() -> array<CV>
+                - find($id) -> CV
+                - create() -> any
+                - update() -> any
+            - Experience:
+                - all() -> array<Experience>
+            - Talent:
+                - get($id) -> Talent
+                - comparaison(array<Talent>,array<Talent>) -> int
+            - Talent_poste_besoin:
+                - get($id_besoin_post) -> array<Talent_poste_besoin>
+            - Classification_cv:
+                - get($id_cv) -> array<Classification_cv>
+            - Util:
+                - count(expertise) -> count
+
+        - View:
+            - cv-list:
+                - table:
+                    - candidat
+                    - poste
+                    - status
+                    - boutton_valide
+
+            - validation_cv:
+                - candidat: text
+                - poste: text
+                - score_cv: text
+                - card_profil_requis: competence (array<Talent>) , experience text , count(expertise) text
+                - card_profil_candidat: competence (array<Talent>) , experience text , count(expertise) text
+
+        - Controller:
+            -CvController:
+                - index(): Model\Cv::all()-> View\cv-list
+
+                - store($request): View\cv_form.button -> Model\Cv::create()
+
+                - validation: View\cv-list.boutton_valide -> Model\Cv::update()
+
+    - communication de test:
+        -Model:
+            - cv:
+                get($comparaisonValider) => array<Cv>
+            - communication:
+                - create() -> any
+                - get($id_cv) -> array<Communication>
+            - communication_cv:
+                - create() -> any
+        -View:
+            - cv-list:
+                - table:
+                    - candidat
+                    - poste
+                    - boutton_envoyer_excuseSMS
+                    - boutton_envoyer_testSMS
+            - detail-communication:
+                - score_cv: text
+                - communication_envouyer: text
+                - status: text
+                - communication email et sms: text
+        -Controller:
+            -CommunicationController:
+                    - index(): Model\Cv::all()-> View\cv-list
+
+                    - validation: View\cv_list.boutton_valide -> Model\Communication_cv::create()
+
+- carte 3:
+    Test:
+        -Model:
+            - all() -> array<Test>
+            - find($id) -> Test
+            - create() -> any
+
+            - TypeTest:
+                - all() -> array<TypeTest>
+
+        -View:
+            -test-form:
+                - candidat: select (cv)
+                - type: select(typeTest)
+                - date: date
+                - Duree: number
+                - teste: file
+                - observation: text
+            -test-list:
+                -table:
+                    - candidat
+                    - type test
+                    - Date
+                    - Score
+                    - Duree
+                    - Status
+                    - boutton-evaluer
+            -validation-test:
+                -candidat: text
+                -date: text
+                -poste: text
+                -card:
+                    -titre: text
+                    -note: number
+                -valider-test: boutton
+                -refuser-test: boutton
+        -Controller:
+            -TestController:
+                - create(): View\test-list.button-add -> (Model\Cv::get($comparaisonValider),Model\TypeTest::all()) -> View\test-form
+                - store($request): View\test-form.button -> Model\Test::create()
+                - evaluer(): View\test-list.boutton-evaluer -> Model\Test::find($id) -> View\validation-test
+                - validerTest(): View\test-list.valider-test -> Model\Communication_cv::create()
+                - refuserTest(): View\test-list.refuser-test -> Model\Communication_cv::create()
+-carte 4:
+    Renouvellement de contrat:
+        -Metier:
+            -contrat_cv:
+                - update() -> any
+        -View:
+            -contrat_form:
+                - nom: text
+                - poste: text
+                - date: date
+                - type_contrat: select(Contrat)
+                - durre: number
+                - salaire: number
+                - boutton: submit
+        -Controller:
+            - update: View\contrat_form.submit -> Model\Contrat::update()

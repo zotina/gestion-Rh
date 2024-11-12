@@ -1,0 +1,98 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .search-bar { margin-bottom: 20px; }
+  input, select { 
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-right: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th { background: #f5f5f5; }
+  .score { font-weight: bold; }
+  .score.high { color: #008000; }
+  .score.medium { color: #FFA500; }
+  .score.low { color: #FF0000; }
+</style>
+<body>
+  <div class="header">
+    <h1>Liste des tests de candidat</h1>
+  </div>
+  
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un candidat...">
+    <select>
+      <option>Tous les types de test</option>
+      <option>Technique</option>
+      <option>Logique</option>
+      <option>Langue</option>
+    </select>
+    <select>
+      <option>Tous les scores</option>
+      <option>Élevé (>80%)</option>
+      <option>Moyen (50-80%)</option>
+      <option>Faible (<50%)</option>
+    </select>
+    <button>Rechercher</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Candidat</th>
+        <th>Type de test</th>
+        <th>Date</th>
+        <th>Score</th>
+        <th>Durée</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jean Martin</td>
+        <td>Technique</td>
+        <td>05/11/2024</td>
+        <td class="score high">85%</td>
+        <td>45 min</td>
+        <td>Complété</td>
+        <td>
+          <button>Voir détails</button>
+          <button>Télécharger</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Marie Dubois</td>
+        <td>Logique</td>
+        <td>04/11/2024</td>
+        <td class="score medium">75%</td>
+        <td>30 min</td>
+        <td>Complété</td>
+        <td>
+          <button>Voir détails</button>
+          <button>Télécharger</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

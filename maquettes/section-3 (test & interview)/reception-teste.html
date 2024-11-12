@@ -1,0 +1,81 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 20px; }
+  .test-section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+  }
+  input, select, textarea { 
+    width: 100%;
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .upload-zone {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 8px;
+  }
+</style>
+<body>
+  <div class="header">
+    <h1>Réception de test de candidat</h1>
+  </div>
+
+  <div class="form-group">
+    <div class="test-section">
+      <label>Candidat</label>
+      <select>
+        <option>Sélectionner un candidat</option>
+        <option>Jean Martin</option>
+        <option>Marie Dubois</option>
+      </select>
+
+      <label>Type de test</label>
+      <select>
+        <option>Technique</option>
+        <option>Logique</option>
+        <option>Langue</option>
+      </select>
+    </div>
+
+    <div class="test-section">
+      <label>Date du test</label>
+      <input type="date">
+
+      <label>Durée du test (minutes)</label>
+      <input type="number" placeholder="Ex: 60">
+    </div>
+
+    <div class="upload-zone">
+      <p>Déposez le fichier du test complété ici ou</p>
+      <button>Parcourir les fichiers</button>
+    </div>
+
+    <label>Observations</label>
+    <textarea rows="4" placeholder="Ajoutez des observations sur le déroulement du test..."></textarea>
+  </div>
+
+  <div class="actions">
+    <button>Enregistrer le test</button>
+    <button style="background: white; color: black; border: 1px solid black;">Annuler</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+@extends('layouts.app')
+
+@section('content')
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+    .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+    .form-group { margin-bottom: 20px; }
+    input, select, textarea {
+      width: 100%;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .evaluation-grid {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .rating { display: flex; gap: 10px; margin: 10px 0; }
+    .rating button {
+      flex: 1;
+      background: #f0f0f0;
+      color: black;
+    }
+    .rating button.selected {
+      background: black;
+      color: white;
+    }
+  </style>
+
+  <div class="header">
+    <h1>Validation d'entretien</h1>
+  </div>
+
+  <!-- Candidat Information (Read-Only) -->
+
+
+
+<div class="form-group">
+    <div class="actions">
+        <form action="{{ route('entretien.store', $cv->id) }}" method="POST">
+        @csrf
+        <label>Candidat</label>
+        <input type="text" value="{{ $cv->dossier->candidat ?? 'N/A' }}" readonly>
+
+        <label>Poste</label>
+        <input type="text" value="{{ $cv->dossier->besoinPoste->poste->libelle ?? 'N/A' }}" readonly>
+
+        <label>Date d'entretien</label>
+        <input type="date" name="date_entretien" value="" required>
+
+        <label>Commentaires détaillés</label>
+        <textarea name="commentaire" rows="4" placeholder="Ajoutez vos observations..."></textarea>
+
+        <button type="submit">Valider l'entretien</button>
+        <button type="button" style="background: #666;">Rejeter la candidature</button>
+        <button type="button" style="background: white; color: black; border: 1px solid black;" onclick="window.history.back()">Retour</button>
+        </form>
+    </div>
+</div>
+
+@endsection

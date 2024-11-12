@@ -1,0 +1,126 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 20px; }
+  .info-section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+  }
+  input, select, textarea { 
+    width: 100%;
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .evaluation-item {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 8px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .checklist-item input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+  }
+</style>
+<body>
+  <div class="header">
+    <h1>Renouvellement de contrat</h1>
+  </div>
+
+  <div class="form-group">
+    <div class="info-section">
+      <h3>Informations employé</h3>
+      <label>Nom complet</label>
+      <input type="text" value="Jean Martin" readonly>
+      
+      <label>Poste actuel</label>
+      <input type="text" value="Développeur Full Stack" readonly>
+      
+      <label>Date d'entrée</label>
+      <input type="date" value="2023-01-01" readonly>
+    </div>
+
+    <div class="info-section">
+      <h3>Détails du renouvellement</h3>
+      <label>Type de contrat</label>
+      <select>
+        <option>CDI</option>
+        <option>CDD</option>
+      </select>
+      
+      <label>Nouvelle durée (si CDD)</label>
+      <select>
+        <option>6 mois</option>
+        <option>1 an</option>
+        <option>2 ans</option>
+      </select>
+      
+      <label>Nouveau salaire proposé</label>
+      <input type="text" placeholder="Montant annuel">
+    </div>
+
+    <div class="info-section">
+      <h3>Évaluation des performances</h3>
+      <div class="evaluation-item">
+        <label>Objectifs atteints</label>
+        <select>
+          <option>Dépasse les attentes</option>
+          <option>Conforme aux attentes</option>
+          <option>En dessous des attentes</option>
+        </select>
+      </div>
+      
+      <div class="evaluation-item">
+        <label>Compétences techniques</label>
+        <select>
+          <option>Excellent</option>
+          <option>Bon</option>
+          <option>À améliorer</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3>Validation managériale</h3>
+      <div class="checklist-item">
+        <input type="checkbox"> Évaluation annuelle complétée
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox"> Entretien de renouvellement effectué
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox"> Budget validé
+      </div>
+    </div>
+
+    <label>Commentaires</label>
+    <textarea rows="4" placeholder="Ajoutez vos commentaires sur le renouvellement..."></textarea>
+  </div>
+
+  <div class="actions">
+    <button>Valider le renouvellement</button>
+    <button style="background: #666;">Ne pas renouveler</button>
+    <button style="background: white; color: black; border: 1px solid black;">Retour</button>
+  </div>
+</body>
+</html>

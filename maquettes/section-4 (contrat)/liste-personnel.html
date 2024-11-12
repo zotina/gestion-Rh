@@ -1,0 +1,121 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .search-bar { margin-bottom: 20px; }
+  .filters { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    flex-wrap: wrap;
+  }
+  input, select { 
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-right: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th { background: #f5f5f5; }
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #f0f0f0;
+    display: inline-block;
+  }
+</style>
+<body>
+  <div class="header">
+    <h1>Liste du personnel</h1>
+  </div>
+  
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un employé...">
+    <button>Rechercher</button>
+    <button style="float: right;">+ Nouvel employé</button>
+  </div>
+
+  <div class="filters">
+    <select>
+      <option>Tous les départements</option>
+      <option>IT</option>
+      <option>RH</option>
+      <option>Finance</option>
+    </select>
+    
+    <select>
+      <option>Tous les statuts</option>
+      <option>CDI</option>
+      <option>CDD</option>
+      <option>Période d'essai</option>
+    </select>
+    
+    <select>
+      <option>Ancienneté</option>
+      <option>< 1 an</option>
+      <option>1-3 ans</option>
+      <option>> 3 ans</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Employé</th>
+        <th>ID</th>
+        <th>Département</th>
+        <th>Poste</th>
+        <th>Date d'entrée</th>
+        <th>Statut</th>
+        <th>Manager</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Jean Martin</td>
+        <td>EMP001</td>
+        <td>IT</td>
+        <td>Développeur Full Stack</td>
+        <td>01/01/2023</td>
+        <td><span class="status-badge">CDI</span></td>
+        <td>Sophie Dubois</td>
+        <td>
+          <button>Voir profil</button>
+          <button>Éditer</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Marie Laurent</td>
+        <td>EMP002</td>
+        <td>RH</td>
+        <td>Chargée de recrutement</td>
+        <td>15/03/2024</td>
+        <td><span class="status-badge">Période d'essai</span></td>
+        <td>Pierre Moreau</td>
+        <td>
+          <button>Voir profil</button>
+          <button>Éditer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 20px; }
+  .classification-section { 
+    border: 1px solid #ddd; 
+    padding: 15px; 
+    margin: 10px 0; 
+    border-radius: 8px; 
+  }
+  input, select, textarea { 
+    width: 100%;
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 4px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
+<body>
+  <div class="header">
+    <h1>Classification du CV</h1>
+  </div>
+
+  <div class="form-group">
+    <label>Candidat</label>
+    <input type="text" value="Jean Martin" readonly>
+    
+    <div class="classification-section">
+      <h3>Compétences identifiées</h3>
+      <div>
+        <span class="tag">JavaScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">+</span>
+      </div>
+    </div>
+
+    <div class="classification-section">
+      <h3>Niveau d'expérience</h3>
+      <select>
+        <option>Junior (0-2 ans)</option>
+        <option selected>Intermédiaire (2-5 ans)</option>
+        <option>Senior (5+ ans)</option>
+      </select>
+    </div>
+
+    <div class="classification-section">
+      <h3>Domaines d'expertise</h3>
+      <div>
+        <span class="tag">Développement Web</span>
+        <span class="tag">Front-end</span>
+        <span class="tag">Back-end</span>
+        <span class="tag">+</span>
+      </div>
+    </div>
+
+    <div class="classification-section">
+      <h3>Notes additionnelles</h3>
+      <textarea rows="4" placeholder="Ajoutez des notes sur le CV..."></textarea>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button>Enregistrer la classification</button>
+    <button style="background: white; color: black; border: 1px solid black;">Retour</button>
+  </div>
+</body>
+</html>

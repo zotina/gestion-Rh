@@ -1,0 +1,96 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .form-group { margin-bottom: 20px; }
+  .contract-section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+  }
+  input, select, textarea { 
+    width: 100%;
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  .checklist-item input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+  }
+</style>
+<body>
+  <div class="header">
+    <h1>Validation contrat d'essai</h1>
+  </div>
+
+  <div class="form-group">
+    <div class="contract-section">
+      <h3>Informations du candidat</h3>
+      <label>Nom complet</label>
+      <input type="text" value="Jean Martin" readonly>
+      
+      <label>Poste</label>
+      <input type="text" value="Développeur Full Stack" readonly>
+    </div>
+
+    <div class="contract-section">
+      <h3>Détails du contrat</h3>
+      <label>Date de début</label>
+      <input type="date">
+      
+      <label>Durée période d'essai</label>
+      <select>
+        <option>1 mois</option>
+        <option selected>2 mois</option>
+        <option>3 mois</option>
+      </select>
+      
+      <label>Salaire proposé</label>
+      <input type="text" placeholder="Montant annuel">
+    </div>
+
+    <div class="contract-section">
+      <h3>Liste de vérification</h3>
+      <div class="checklist-item">
+        <input type="checkbox" checked> CV validé
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox" checked> Entretiens complétés
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox"> Documents administratifs reçus
+      </div>
+      <div class="checklist-item">
+        <input type="checkbox"> Validation manager
+      </div>
+    </div>
+
+    <label>Notes supplémentaires</label>
+    <textarea rows="4" placeholder="Ajoutez des commentaires..."></textarea>
+  </div>
+
+  <div class="actions">
+    <button>Valider le contrat</button>
+    <button style="background: #666;">Rejeter</button>
+    <button style="background: white; color: black; border: 1px solid black;">Retour</button>
+  </div>
+</body>
+</html>

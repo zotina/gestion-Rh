@@ -1,0 +1,74 @@
+<html>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+  .header { border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 20px; }
+  .search-bar { margin-bottom: 20px; }
+  input, select { 
+    background: #f0f0f0; 
+    border: 1px solid #ddd; 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    margin-right: 10px;
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  th { background: #f5f5f5; }
+</style>
+<body>
+  <div class="header">
+    <h1>Liste de promotion d'employés</h1>
+  </div>
+  
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un employé...">
+    <select>
+      <option>Service</option>
+      <option>Marketing</option>
+      <option>Ventes</option>
+    </select>
+    <button>Rechercher</button>
+    <button style="float: right;">+ Nouvelle promotion</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Employé</th>
+        <th>Poste actuel</th>
+        <th>Poste proposé</th>
+        <th>Date proposition</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Marie Dupont</td>
+        <td>Chef de projet</td>
+        <td>Directeur de projet</td>
+        <td>15/11/2024</td>
+        <td>En attente</td>
+        <td>
+          <button>Détails</button>
+          <button>Valider</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
